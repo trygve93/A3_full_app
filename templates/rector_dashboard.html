@@ -1,0 +1,43 @@
+<!doctype html><html><body>
+<h2>Rektor (admin)</h2>
+<a href="/change-password">Endre passord</a> | <a href="/logout">Logg ut</a>
+
+<h3>Lærere</h3>
+<ul>{% for t in teachers %}<li>{{t.username}} (klasse {{t.class_id}}) <a href="/rector/teachers/{{t.id}}/delete">slett</a></li>{% endfor %}</ul>
+<form method="post" action="/rector/teachers/create">
+  <input name="username" placeholder="ny lærer" required>
+  <input type="password" name="password" placeholder="passord" required>
+  <input type="number" name="class_id" placeholder="klasse id" required>
+  <button>Legg til lærer</button>
+</form>
+
+<h3>Elever</h3>
+<ul>{% for s in students %}<li>{{s.username}} (klasse {{s.class_id}}) <a href="/rector/students/{{s.id}}/delete">slett</a></li>{% endfor %}</ul>
+<form method="post" action="/rector/students/create">
+  <input name="username" placeholder="ny elev" required>
+  <input type="password" name="password" placeholder="passord" required>
+  <input type="number" name="class_id" placeholder="klasse id" required>
+  <button>Legg til elev</button>
+</form>
+
+<h3>Fag</h3>
+<ul>{% for f in subjects %}<li>{{f.name}}</li>{% endfor %}</ul>
+<form method="post" action="/rector/subjects">
+  <input name="name" placeholder="nytt fag" required>
+  <button>Legg til fag</button>
+</form>
+
+<h3>Tildel lærer til fag</h3>
+<form method="post" action="/rector/assign/teacher-subject">
+  <input name="teacher_id" placeholder="teacher_id" required>
+  <input name="subject_id" placeholder="subject_id" required>
+  <button>Tildel</button>
+</form>
+
+<h3>Tildel elev til fag</h3>
+<form method="post" action="/rector/assign/student-subject">
+  <input name="student_id" placeholder="student_id" required>
+  <input name="subject_id" placeholder="subject_id" required>
+  <button>Tildel</button>
+</form>
+</body></html>

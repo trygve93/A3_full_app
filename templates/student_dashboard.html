@@ -1,0 +1,9 @@
+<!doctype html><html><body>
+<h2>Mine karakterer</h2>
+<a href="/change-password">Endre passord</a> | <a href="/logout">Logg ut</a>
+<ul>
+{% for g in grades %}
+  <li>{{g.subject_name}} – {{g.grade or '(ikke satt)'}} {% if g.pdf_path %}<a href="/student/grades/{{g.id}}/download">Last ned PDF</a>{% endif %}</li>
+{% endfor %}
+</ul>
+</body></html>

@@ -1,0 +1,18 @@
+<!doctype html><html><body>
+<h2>Lærer – min klasse</h2>
+<a href="/change-password">Endre passord</a> | <a href="/logout">Logg ut</a>
+<h3>Elever i min klasse</h3>
+<ul>{% for s in students %}<li>{{s.username}} (id {{s.id}})</li>{% endfor %}</ul>
+
+<h3>Mine fag</h3>
+<ul>{% for f in subjects %}<li>{{f.name}} (id {{f.id}})</li>{% endfor %}</ul>
+
+<h3>Last opp/oppdater karakter (PDF)</h3>
+<form method="post" action="/teacher/grades/create" enctype="multipart/form-data">
+  <input name="student_id" placeholder="student_id" required>
+  <input name="subject_id" placeholder="subject_id" required>
+  <input name="grade" placeholder="karakter" required>
+  <input type="file" name="pdf" accept="application/pdf">
+  <button>Lagre</button>
+</form>
+</body></html>
